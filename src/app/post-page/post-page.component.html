@@ -1,47 +1,22 @@
-<div class="post">
-  <div class="header">
-    <h1>Post Title</h1>
+<div *ngIf="post$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{ post.title }}</h1>
 
-    <button class="btn btn-link" routerLink="/">Main Page</button>
-  </div>
+      <button class="btn btn-link" routerLink="/">Main Page</button>
+    </div>
 
-  <div class="info">
-    <strong>Author</strong>
-    <small>21.01.2018</small>
-  </div>
+    <div class="info">
+      <strong>{{ post.author }}</strong>
+      <small>{{ post.date | date:'medium'}}</small>
+    </div>
 
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Cumque ea, id labore mollitia nihil nulla odit quas recusandae
-      rerum sit tempore vel, veniam! Accusantium corporis cum eos
-      excepturi facere ipsa nihil perferendis rerum similique
-      voluptatibus? Aspernatur, blanditiis commodi error est eum in
-      laborum maiores pariatur, quis rerum, saepe suscipit veritatis.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Cumque ea, id labore mollitia nihil nulla odit quas recusandae
-      rerum sit tempore vel, veniam! Accusantium corporis cum eos
-      excepturi facere ipsa nihil perferendis rerum similique
-      voluptatibus? Aspernatur, blanditiis commodi error est eum in
-      laborum maiores pariatur, quis rerum, saepe suscipit veritatis.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Cumque ea, id labore mollitia nihil nulla odit quas recusandae
-      rerum sit tempore vel, veniam! Accusantium corporis cum eos
-      excepturi facere ipsa nihil perferendis rerum similique
-      voluptatibus? Aspernatur, blanditiis commodi error est eum in
-      laborum maiores pariatur, quis rerum, saepe suscipit veritatis.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Cumque ea, id labore mollitia nihil nulla odit quas recusandae
-      rerum sit tempore vel, veniam! Accusantium corporis cum eos
-      excepturi facere ipsa nihil perferendis rerum similique
-      voluptatibus? Aspernatur, blanditiis commodi error est eum in
-      laborum maiores pariatur, quis rerum, saepe suscipit veritatis.
-    </p>
+    <div>
+      <quill-view-html [content]="post.text"></quill-view-html>
+    </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
